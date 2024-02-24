@@ -8,6 +8,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+from twilio.rest import Client
+import pyshorteners
+
 
 firebaseconfig={
     "apiKey": "AIzaSyA_8MxSW42rjlkYTFqC0SBggRmbHWto0Lo",
@@ -35,6 +38,11 @@ print(time1)
 
 @app.route("/api",methods=["POST","GET"])
 def api():
+    account_sid = 'ACf4d75a2dc02ed30b1772e79351a9af1b'
+    auth_token = 'f2b7c680d940eb45c5db569e0aad9577'
+    client = Client(account_sid, auth_token)
+
+    
     plateno=request.args.get("plateno")
     roadnm=request.args.get("roadnm")
     datetime1=request.args.get("datetime")
@@ -161,6 +169,35 @@ def api():
         server.sendmail(from_email, email, msg.as_string())
         isdone=True
         print("Email Send Successfully with attachment")
+
+    s = pyshorteners.Shortener()  
+    short_url = s.tinyurl.short(attachment)
+    message = client.messages.create(
+    from_='+17248973287',
+    body=f"""
+        We hope this message finds you well. We regret to inform you that your vehicle with the number plate {plateno} was observed overspeeding on {time1}. This violation is a breach of traffic regulations and poses a risk to road safety.
+       
+        Number Plate : {plateno}
+        Time : {time1}
+      
+        For your reference, we have generated a memo regarding this overspeeding incident. You can download the memo using the link below:
+        Download Your Memo :- {short_url}
+       
+        Please take this matter seriously, and we urge you to adhere to speed limits for the safety of yourself and others on the road.
+
+        If you have any concerns or would like to discuss this further, feel free to mail at {from_email}
+      
+        Thank you for your cooperation.
+
+        Sincerely,
+            Government Of Gujarat
+            Traffic Control Department
+
+        """,
+        to='+916352972571'
+        ) 
+
+    issms=True
 
 
 
