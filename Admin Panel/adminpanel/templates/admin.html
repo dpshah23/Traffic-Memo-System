@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "head.html" %}
+
+{% if messages %}
+{% for message in messages  %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show my-0 py-2" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+     {% endif %}
+
+<body class="bg-light1">
+   {% include "navbar.html" %}
+  <div class="container-fluid">
+    <div class="row" id="content">
+      {% include "cards.html" %}
+      <div class="offset-md-3 col-md-9 pe-4">
+        <div class="filter-container">
+          <label>Roadways:</label>
+          <select id="roadwayFilter">
+            <option value="">All</option>
+            <option value="Road 1">Road 1</option>
+            <option value="Road 2">Road 2</option>
+            <option value="Road 3">Road 3</option>
+          </select>
+        
+          <label>Type of Vehicle:</label>
+          <select id="vehicleTypeFilter">
+            <option value="">All</option>
+            <option value="Car">Car</option>
+            <option value="Truck">Truck</option>
+            <option value="Motorcycle">Motorcycle</option>
+          </select>
+        
+          <label>Name Plate:</label>
+          <input type="text" id="namePlateFilter">
+        </div>
+        {% include "table.html" %}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
