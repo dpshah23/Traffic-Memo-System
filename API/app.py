@@ -4,6 +4,11 @@ from flask import Flask,render_template,redirect,request,jsonify
 import pyrebase
 from fpdf import FPDF
 import random
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+
 firebaseconfig={
     "apiKey": "AIzaSyA_8MxSW42rjlkYTFqC0SBggRmbHWto0Lo",
     "authDomain": "traffic-memo-system.firebaseapp.com",
@@ -21,6 +26,12 @@ storage=firebase.storage()
 db=firebase.database()
 
 app=Flask(__name__)
+
+from_email = 'hackathon344@gmail.com'
+password = 'idiy xlrh vqzu omfd'
+subject="Memo Regarding Overspeeding Violation"
+time1=datetime.now()
+print(time1)
 
 @app.route("/api",methods=["POST","GET"])
 def api():
@@ -103,6 +114,54 @@ def api():
 
     attachment=f"https://firebasestorage.googleapis.com/v0/b/traffic-memo-system.appspot.com/o/{urlname}?alt=media"
     print(attachment)
+
+    body=f"""
+
+    <h1 style="text-align:center;">Government Of Gujarat</h1>
+
+    <p>Dear {name},</p>
+
+    <p>We hope this message finds you well. We regret to inform you that your vehicle with the number plate {plateno} was observed overspeeding on {time1}. This violation is a breach of traffic regulations and poses a risk to road safety.</p>
+
+    <p>Memo Details:
+        <ul>
+            <li>Number Plate: {plateno}</li>
+            <li>Date and Time: {time1}</li>
+        </ul>
+    </p>
+    For your reference, we have generated a memo regarding this overspeeding incident. You can download the    memo using the link below:
+
+    </p>
+
+    <p><button style="border-radius:3px; background-color:#2383E2; padding:5px; width:250px; height:40px" align-item:center;>&nbsp;&nbsp;<a href="{attachment}" style="color:white;" target="_blank" rel="noopener noreferrer">Download Memo</a>&nbsp;&nbsp;</button></p>
+
+    <p>Please take this matter seriously, and we urge you to adhere to speed limits for the safety of yourself and others on the road.</p>
+
+    <p>If you have any concerns or would like to discuss this further, feel free to <a href="mailto:hackathon344@gmail.com">contact our traffic control department</a>.</p>
+
+    <p>Thank you for your cooperation.</p>
+
+    <p>Sincerely,<br>
+    Government Of Gujarat<br>
+    Traffic Control Department</p>
+
+
+
+    """
+    msg = MIMEMultipart()
+    msg['Subject'] = subject
+    msg['From'] = from_email
+    msg['To'] = email
+    msg.attach(MIMEText(body, 'html'))
+
+
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        server.starttls()
+        server.login(from_email, password)
+        server.sendmail(from_email, email, msg.as_string())
+        isdone=True
+        print("Email Send Successfully with attachment")
+
 
 
 if __name__=="__main__":
