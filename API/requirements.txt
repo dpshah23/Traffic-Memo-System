@@ -4,3 +4,4 @@ firebase_admin
 pyrebase
 pyshorteners
 twillio
+fpdf
