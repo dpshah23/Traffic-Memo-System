@@ -12,6 +12,17 @@ This API is designed to generate and send memos regarding overspeeding violation
 - **Email.mime**: Python modules for creating email messages with attachments.
 - **Twilio**: A Python library for sending SMS messages.
 - **Pyshorteners**: A Python library for shortening URLs.
+- **Random:** Python library for generating random numbers, useful for tasks like OTP generation.
+- **Yolov8:** Object detection algorithm for real-time detection in images and videos.
+- **OpenCV:** Open-source computer vision library providing functions for image and video processing.
+- **Russian Cascade:** Haar Cascade classifier trained for detecting Russian license plate numbers.
+- **EasyOCR:** Python package for optical character recognition, simplifying text extraction from images.
+
+### Additional Technologies
+
+- Computer Vision Convolutional Neural Network (CNN): Utilized within the Yolov8 algorithm for object detection tasks, CNNs are deep learning models designed to 
+  automatically and adaptively learn spatial hierarchies of features directly from image data. They are commonly employed in computer vision tasks for their 
+  ability to extract intricate patterns and features from images.
 
 ### API Endpoints:
 - **POST /api**:
@@ -148,7 +159,30 @@ The Traffic Management Automation System is a Python-based application designed 
 - Enhance user interface and error handling.
 - Add support for additional features like traffic pattern analysis.
 
-This documentation provides an overview of the Traffic Management Automation System, including its modules, implementation details, usage instructions, dependencies, limitations, and future enhancement possibilities.
+### Model Explanation
+
+The Traffic Management Automation System is built upon a modular architecture, comprising distinct components for user authentication, road data management, and vehicle speed detection.
+
+## User Authentication Module:
+
+- Responsible for managing user access to the system. Users can log in or sign up to utilize the system's functionalities securely. This module employs Tkinter 
+  for the graphical user interface and Pyrebase for authentication with Firebase.
+
+## Road Data Management Module: 
+
+- Enables users to create, update, and retrieve road-related data such as road names, speed limits, and distances between points. This module integrates with the 
+  Firebase Realtime Database for seamless data storage and retrieval.
+
+## Vehicle Speed Detection Module: 
+
+- Utilizes computer vision techniques for real-time detection and monitoring of vehicle speeds. The core of this module lies in the Yolov8 object detection 
+  algorithm, which identifies vehicles within video frames. Object tracking techniques are then applied to track vehicle movements over consecutive frames. 
+  Furthermore, the module employs a Russian Cascade classifier for detecting Russian license plate numbers, and EasyOCR for extracting text from the detected 
+  number plates. This comprehensive approach allows the system to accurately monitor and record vehicle speeds, ensuring adherence to traffic regulations.
+
+By leveraging these interconnected modules, the Traffic Management Automation System streamlines traffic management tasks, enhances road safety, and facilitates efficient monitoring of vehicular activities.
+
+
 
 #  Web Application Documentation
 
