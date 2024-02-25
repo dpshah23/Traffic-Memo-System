@@ -123,3 +123,12 @@ def verify(request):
                return redirect('/')
                
      return render(request,"verify.html")
+
+def logout(request):
+    if 'email' in request.session:
+        request.session.pop('email')
+        request.session.pop('role')
+        request.session.pop('name')
+        request.session.pop('roadnm')
+        return redirect('/login')
+    
