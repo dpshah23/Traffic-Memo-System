@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "head.html" %}
+
+{% if messages %}
+{% for message in messages  %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show my-0 py-2" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+     {% endif %}
+
+<body class="bg-light1">
+   {% include "navbar.html" %}
+  <div class="container-fluid">
+    <div class="row" id="content">
+      {% include "cards.html" %}
+      <div class="offset-md-3 col-md-9 pe-4">
+        <div class="filter-container">
+          <label>Roadways:</label>
+          <select id="roadwayFilter">
+            <option value="">All</option>
+            <option value="Road 1">Road 1</option>
+            <option value="Road 2">Road 2</option>
+            <option value="Road 3">Road 3</option>
+          </select>
+        
+          <label>Type of Vehicle:</label>
+          <select id="vehicleTypeFilter">
+            <option value="">All</option>
+            <option value="Car">Car</option>
+            <option value="Truck">Truck</option>
+            <option value="Motorcycle">Motorcycle</option>
+          </select>
+        
+          <label>Name Plate:</label>
+          <input type="text" id="namePlateFilter">
+        </div>
+        <table class="table table-hover table-bordered" id="memoTable">
+          <thead>
+            
+            <tr>
+              <th>Sr. no</th>
+              <th>Memos</th>
+              <th>Image link</th>
+              <th>Pdf link</th>
+              <th>Road name</th>
+              <th>Fine</th>
+              <th>Name</th>
+              <th>Plate no</th>
+              <th>Date and time</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            {% for key, item in memos.items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.imageurl }}</td>
+                <td>{{ item.pdfurl }}</td>
+                <td>{{ item.roadnm }}</td>
+                <td>{{ item.fine }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.plateno }}</td>
+                <td>{{ item.dateandtime }}</td>
+            </tr>
+            {% endfor %}
+            {% comment %} <tr>
+              <td>1</td>
+              <td>Memo 1</td>
+              <td><a href="#">Link 1</a></td>
+              <td><a href="#">Link 1</a></td>
+              <td>Road 1</td>
+              <td>100</td>
+              <td>John Doe</td>
+              <td>ABC123</td>
+              <td>2024-02-16 10:00:00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Memo 2</td>
+              <td><a href="#">Link 2</a></td>
+              <td><a href="#">Link 2</a></td>
+              <td>Road 2</td>
+              <td>150</td>
+              <td>Jane Doe</td>
+              <td>XYZ789</td>
+              <td>2024-02-16 11:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Truck</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Car</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Car</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Memo 4</td>
+              <td><a href="#">Link 4</a></td>
+              <td><a href="#">Link 4</a></td>
+              <td>Road 4</td>
+              <td>250</td>
+              <td>Bob Johnson</td>
+              <td>GHI789</td>
+              <td>2024-02-16 13:00:00</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Memo 5</td>
+              <td><a href="#">Link 5</a></td>
+              <td><a href="#">Link 5</a></td>
+              <td>Road 5</td>
+              <td>300</td>
+              <td>Eve Wilson</td>
+              <td>JKL012</td>
+              <td>2024-02-16 14:00:00</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Memo 1</td>
+              <td><a href="#">Link 1</a></td>
+              <td><a href="#">Link 1</a></td>
+              <td>Road 1</td>
+              <td>100</td>
+              <td>John Doe</td>
+              <td>ABC123</td>
+              <td>2024-02-16 10:00:00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Memo 2</td>
+              <td><a href="#">Link 2</a></td>
+              <td><a href="#">Link 2</a></td>
+              <td>Road 2</td>
+              <td>150</td>
+              <td>Jane Doe</td>
+              <td>XYZ789</td>
+              <td>2024-02-16 11:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Truck</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Car</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Car</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Memo 4</td>
+              <td><a href="#">Link 4</a></td>
+              <td><a href="#">Link 4</a></td>
+              <td>Road 4</td>
+              <td>250</td>
+              <td>Bob Johnson</td>
+              <td>GHI789</td>
+              <td>2024-02-16 13:00:00</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Memo 5</td>
+              <td><a href="#">Link 5</a></td>
+              <td><a href="#">Link 5</a></td>
+              <td>Road 5</td>
+              <td>300</td>
+              <td>Eve Wilson</td>
+              <td>JKL012</td>
+              <td>2024-02-16 14:00:00</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Memo 1</td>
+              <td><a href="#">Link 1</a></td>
+              <td><a href="#">Link 1</a></td>
+              <td>Road 1</td>
+              <td>100</td>
+              <td>John Doe</td>
+              <td>ABC123</td>
+              <td>2024-02-16 10:00:00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Memo 2</td>
+              <td><a href="#">Link 2</a></td>
+              <td><a href="#">Link 2</a></td>
+              <td>Road 2</td>
+              <td>150</td>
+              <td>Jane Doe</td>
+              <td>XYZ789</td>
+              <td>2024-02-16 11:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Truck</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Car</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Car</td>
+              <td><a href="#">Link 3</a></td>
+              <td><a href="#">Link 3</a></td>
+              <td>Road 3</td>
+              <td>200</td>
+              <td>Alice Smith</td>
+              <td>DEF456</td>
+              <td>2024-02-16 12:00:00</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Memo 4</td>
+              <td><a href="#">Link 4</a></td>
+              <td><a href="#">Link 4</a></td>
+              <td>Road 4</td>
+              <td>250</td>
+              <td>Bob Johnson</td>
+              <td>GHI789</td>
+              <td>2024-02-16 13:00:00</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Memo 5</td>
+              <td><a href="#">Link 5</a></td>
+              <td><a href="#">Link 5</a></td>
+              <td>Road 5</td>
+              <td>300</td>
+              <td>Eve Wilson</td>
+              <td>JKL012</td>
+              <td>2024-02-16 14:00:00</td>
+            </tr> {% endcomment %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

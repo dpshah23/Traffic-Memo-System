@@ -1,0 +1,84 @@
+{% extends "superadmin_base.html" %}
+{% comment %} users
+
+email
+mobile
+plateno
+name {% endcomment %}
+
+
+{% block staffDetail %}
+<div class="container">
+    <div class="h2">
+        <p class="text-center pane-title text-bg-light2">User Details</p>
+    </div>
+    <button id='addStaff' class='btn btn-dark2 text-light1'  data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa-solid fa-plus" ></i> Add Staff</button>
+    <table id="staffDetailstable" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Srno</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Road Handled</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for key, item in staffs.items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.password }}</td>
+                <td>{{ item.roadnm }}</td>
+                <td>{{ item.role }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModalLabel">Add New Row</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form id="addForm" method="post">
+                  {% csrf_token %}
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group">
+                  <label for="road">Road Handled</label>
+                  <input type="text" class="form-control" id="road" name="road">
+                </div>
+                <div class="form-group">
+                  <label for="role">Role</label>
+                  <input type="text" class="form-control" id="role" name="role">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  
+                  <button type="submit" class="btn btn-primary" id="saveRowBtn">Save changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock staffDetail %}

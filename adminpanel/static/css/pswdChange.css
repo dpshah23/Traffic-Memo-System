@@ -1,0 +1,38 @@
+.pane-title {
+    
+    padding: 1.5rem 0.7rem;
+    margin: 1rem 0;
+}
+.fa-solid{
+    cursor: pointer;
+    text-decoration: none;
+}
+.fa-check{
+    color: rgb(63, 167, 49);
+    background-color: rgb(197 229 193 / 35%);
+    padding: 0.3rem;
+    border-radius: 0.1rem;
+}
+.fa-xmark{
+    color: rgb(193, 92, 92);
+    background-color: rgb(227 203 203 / 35%);
+    padding: 0.3rem 0.4rem;
+    border-radius: 0.1rem;
+}
+
+.approve-popovertip {
+    --bs-popover-font-size: 0.875rem;
+    --bs-popover-max-width: 100px; 
+    --bs-popover-body-padding-x: 0.5rem; 
+    --bs-popover-body-color: rgb(37, 99, 28); 
+    --bs-popover-border-color: rgb(63, 167, 49);
+    --bs-popover-body-padding-y: 0.3rem;
+}
+.reject-popovertip {
+    --bs-popover-font-size: 0.875rem;
+    --bs-popover-max-width: 100px; 
+    --bs-popover-body-padding-x: 0.5rem; 
+    --bs-popover-body-color: rgb(133, 54, 54); 
+    --bs-popover-border-color: rgb(193, 92, 92);
+    --bs-popover-body-padding-y: 0.3rem;
+}

@@ -1,0 +1,38 @@
+{% extends "superadmin_base.html" %}
+{% comment %} users
+
+email
+mobile
+plateno
+name {% endcomment %}
+
+
+{% block userDetail %}
+<div class="container">
+    <div class="h2">
+        <p class="text-center pane-title text-bg-light2">User Details</p>
+    </div>
+    <table id="userDetailstable" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Srno</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile Num</th>
+                <th>Plate Num</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, item in users.items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.mobile }}</td>
+                <td>{{ item.plateno }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  
+{% endblock userDetail %}

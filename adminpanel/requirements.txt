@@ -1,0 +1,3 @@
+django
+pyrebase
+django-jazzmin

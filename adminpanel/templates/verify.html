@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "head.html" %}
+{% block title %}Verify {% endblock title %}
+
+<body class="bg-light1">
+   {% include "navbar.html" %}
+  <div class="container"><div class="message-container">
+    
+      <h1 class="heading mt-5">Admin Login</h1>
+        <div class="form">
+          <h1>Verification Code</h1>
+          <form action="/verify" method="post">
+          {% csrf_token %}
+          <div class="verification-form">
+              <input type="text" placeholder="Verification Code" id="verificationCode" name="otp" required>
+              <button type="submit" id="verifyButton">Verify</button>
+          </div>
+        </form>
+        </div>
+  </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.card-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 84dvh;
+    --bs-border-radius: 0.2rem;
+
+}
+
+.card-body {
+    height: 7.6rem;
+}
+
+.filter-container {
+    padding: 1rem 0.5rem;
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#content {
+
+    margin-top: 5.7rem;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .card-container {
+        height: 27.2dvh;
+        padding-top: 1.3rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        flex-direction: row;
+    }
+
+    .card {
+        margin: 0.4rem 0.2rem;
+        width: 100%;
+    }
+
+    .card-header {
+        height: 2.2rem;
+        font-size: 1rem;
+    }
+
+    .card-body {
+        margin: 0.4rem 0px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+    .card-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.message-container {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 17rem;
+}
+
+.cs-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+    /* height: auto; */
+    --bs-border-radius: 0.2rem;
+    margin-top: 27px;
+    transition: all 0.4s ease-in-out; 
+}
+
+.cs-card {
+    flex: auto;
+    margin: 0 0.5rem;
+    transition: all 0.4s ease-in-out;
+    border: solid 1px black;
+    border-radius: 0.3rem;
+    
+}
+.cs-header,.card-body {
+    padding: 10px 20px;
+}
+.cs-card-text{
+    align-items: center;
+}
