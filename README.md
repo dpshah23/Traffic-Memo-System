@@ -1,3 +1,9 @@
+# Important Note
+<h4>This Site is hosted on free server so it may take a while to load so please be patient . Thank you</h4>
+
+Link Of Admin Panel :- https://admin-panel-traffic-management-system.onrender.com
+
+
 ## API Documentation
 
 ### Overview:
