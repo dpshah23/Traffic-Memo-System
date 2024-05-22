@@ -6,16 +6,8 @@ def submit_action():
     passwd_val = password_entry.get()
 
     print("inside Function")
-    firebaseconfig = {
-        "apiKey": "AIzaSyA_8MxSW42rjlkYTFqC0SBggRmbHWto0Lo",
-        "authDomain": "traffic-memo-system.firebaseapp.com",
-        "databaseURL": "https://traffic-memo-system-default-rtdb.asia-southeast1.firebasedatabase.app",
-        "projectId": "traffic-memo-system",
-        "storageBucket": "traffic-memo-system.appspot.com",
-        "messagingSenderId": "924362054158",
-        "appId": "1:924362054158:web:79ea6de2d743672581ba5f",
-        "measurementId": "G-7NTYGR515N"
-    }
+    # Firebase Config
+    
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
     road = db.child("road").get()
